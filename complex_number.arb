@@ -41,10 +41,8 @@ class ComplexNum
     end
     #bulk_multiply
     def self.bulk_multiply(cns)
-        result = ComplexNum.new(1,1)
-        cns.drop(1).each do |cn|
-        result *= cn
-    end
+        result = ComplexNum.new(1,0)
+        cns.each { |cn| result *= cn}
         result
     end
 
@@ -56,7 +54,7 @@ class ComplexNum
     #get_state
     def self.get_state()
         puts "Add Operations Count: #{@@add_operation.to_s}" 
-        puts "Multiply Operations Count: " + @@multiply_operation.to_s
+        puts "Multiply Operations Count: #{@@multiply_operation}"
     end
 
 end
