@@ -1,0 +1,83 @@
+#!/usr/bin/env ruby
+class ComplexNum
+
+    #class variable
+    @@add_operation = 0
+    @@multiply_operation = 0
+
+    #setter function
+    attr_writer :real, :imaginary
+    #getter function
+    attr_reader :real, :imaginary
+
+    #constructor
+    def initialize(real, imaginary)
+        @real = real
+        @imaginary = imaginary
+    end
+
+    #override + function
+    def + (obj)
+        @@add_operation += 1
+        real = @real + obj.real
+        imaginary  = @imaginary  + obj.imaginary
+        ComplexNum.new(real, imaginary)
+    end
+
+    #override * function
+    def *(object)
+        @@multiply_operation += 1
+        real = @real * object.real - @imaginary * object.imaginary
+        imaginary  = @real * object.imaginary + @imaginary * object.real
+        ComplexNum.new(real, imaginary)
+    end
+
+    #add_bulk
+    def self.add_bulk(arr)
+        result = ComplexNum.new(0,0)
+        arr.each {|cn| result += cn}
+        result
+    
+    end
+    #bulk_multiply
+    def self.bulk_multiply(cns)
+        result = ComplexNum.new(1,1)
+        cns.drop(1).each do |cn|
+        result *= cn
+    end
+        result
+    end
+
+    # override to_string function
+    def to_s
+        "(#{self.real} + #{self.imaginary}i)"
+    end
+
+    #get_state
+    def self.get_state()
+        puts "Add Operations Count: #{@@add_operation.to_s}" 
+        puts "Multiply Operations Count: " + @@multiply_operation.to_s
+    end
+
+end
+
+    complex_num1 = ComplexNum.new(2, 5)
+    complex_num2 = ComplexNum.new(4, -3)
+    
+    complex_num3 = ComplexNum.new(3, 2)
+
+    puts "Sum Result is " + (complex_num1 + complex_num2).to_s
+    print "============================================\n"
+
+    puts "Multiply Result is " + (complex_num1 * complex_num2).to_s
+    print "============================================\n"
+
+    array = [complex_num1, complex_num2, complex_num3]
+    puts "array Bulk Adding Result is " + (ComplexNum.add_bulk(array)).to_s
+    print "============================================\n"
+
+    puts puts "array Bulk Multiply Result is " + (ComplexNum.bulk_multiply(array)).to_s
+    print "---------------------------------------------\n"
+
+    #get state 
+    ComplexNum.get_state()
