@@ -1,0 +1,14 @@
+
+<div class ="container">
+
+    <h3>Titles of all Posts</h3>
+
+    <% if flash[:post_created] == 200 %>
+        <p class="alert alert-success">Post Created Successfully</p> 
+    <% end %>
+
+    <% @posts.each do |post| %>
+        Title: <%= post['name'] %><br>
+    <% end %>
+
+</div>

@@ -1,0 +1,16 @@
+
+<%= form_with scope: :post, url: posts_path, local: true, class:"container" do |form| %>
+  <p class:"form-group">
+    <%= form.label :title %><br>
+    <%= form.text_field :title, name:"title", value: "first post", class: "form-control" %>
+  </p>
+
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text,name: "description",  value: "first post description", class: "form-control" %>
+  </p>
+
+  <p>
+    <%= form.submit  class: "btn btn-primary" %>
+  </p>
+<% end %>
