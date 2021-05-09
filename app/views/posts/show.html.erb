@@ -1,0 +1,37 @@
+<h2 class="text-success text-center">Post Information</h2>
+
+<% if notice %>
+<p class="alert alert-success text-center mt-2"><%= notice ? notice : @post.title %></p>
+<% end %>
+
+<p >
+  <strong class="h3 text-capitalize fs-3">title:</strong>
+  <span class="h4"> <%= @post.title %> </span>
+</p>
+
+<p>
+  <strong class="h3 text-capitalize fs-3">Body:</strong>
+  <span class="h4"> <%= @post.body %> </span>
+</p>
+
+<%= link_to fa_icon('backward', text: "Back"), posts_path, class: "btn btn-warning btn-sm text-white" %>
+<%= link_to fa_icon('edit', text: "Edit"), edit_post_path(@post), class: "btn btn-success btn-sm text-white" %> 
+
+<hr>
+
+<h4 class="text-success text-center">Comments <%= @post.comments.count%> </h4>
+<% if @post.comments.count > 0 %>
+  <% @post.comments.each do |comment| %>
+    <p>
+      <strong class="h4 text-capitalize fs-3"><%= comment.commenter %>:</strong>
+      <span class="h5"><%= comment.body %></span>
+    </p>
+    <hr>
+  <% end %>
+<% else %>
+  <div class="alert alert-warning text-center">there is no comments yet</div>
+<% end %>
+
+<h4 class="text-success text-center">Add Comment</h4>
+<%= render 'comments/form' %>
+

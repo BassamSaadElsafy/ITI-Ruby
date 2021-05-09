@@ -1,0 +1,6 @@
+<h1 class="text-center text-success">Editing Post</h1>
+
+<%= render 'form', post: @post %>
+
+<%= link_to fa_icon('info-circle', text: "Show") , @post, class: "btn btn-info btn-sm text-white"  %> 
+<%= link_to fa_icon('backward', text: "Back"), posts_path, class: "btn btn-warning btn-sm" %>

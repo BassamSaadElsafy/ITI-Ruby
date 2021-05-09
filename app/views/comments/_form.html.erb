@@ -1,0 +1,17 @@
+<%= form_with model: [ @post, @post.comments.build ] do |form| %>
+  
+  <div class="field form-group">
+    <%= form.label :commenter %>
+    <%= form.hidden_field :commenter, value: "#{current_user.email}", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-outline-success"%>
+  </div>
+  
+<% end %>
