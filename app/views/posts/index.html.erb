@@ -22,14 +22,6 @@
         <td><%= link_to fa_icon('edit', text: "Edit"), edit_post_path(post), class: "btn btn-success btn-sm text-white" %></td>
         
 
-        <%=  current_user.superadmin_role? %>
-        <%=  current_user.supervisor_role? %>
-        <%=  current_user.user_role? %>
-
-
-        
-
-
         <% if current_user.superadmin_role? || current_user.supervisor_role?|| current_user.user_role?%>
         
         <td><%= link_to fa_icon('trash', text: "delete"), "javascript:void(0)", 'data-target': "#delete_post#{post.id}", 'data-toggle': "modal" , class: "btn btn-danger text-white" %></td>
