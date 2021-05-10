@@ -15,8 +15,10 @@
 </p>
 
 <%= link_to fa_icon('backward', text: "Back"), posts_path, class: "btn btn-warning btn-sm text-white" %>
-<%= link_to fa_icon('edit', text: "Edit"), edit_post_path(@post), class: "btn btn-success btn-sm text-white" %> 
 
+<% if @post&.user&.id == current_user.id %>
+  <%= link_to fa_icon('edit', text: "Edit"), edit_post_path(@post), class: "btn btn-success btn-sm text-white" %> 
+<% end %>
 <hr>
 
 <h4 class="text-success text-center">Comments <%= @post.comments.count%> </h4>
