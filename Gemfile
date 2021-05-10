@@ -64,3 +64,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #added 
 gem "font-awesome-rails"
 gem 'devise'
+gem 'active_model_serializers'
+gem 'jwt'
+gem 'rack-cors'
+
+gem 'cancancan'

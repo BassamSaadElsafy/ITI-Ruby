@@ -21,7 +21,20 @@
         <td><%= link_to fa_icon('info-circle', text: "Show"), post, class: "btn btn-info btn-sm text-white" %></td>
         <td><%= link_to fa_icon('edit', text: "Edit"), edit_post_path(post), class: "btn btn-success btn-sm text-white" %></td>
         
+
+        <%=  current_user.superadmin_role? %>
+        <%=  current_user.supervisor_role? %>
+        <%=  current_user.user_role? %>
+
+
+        
+
+
+        <% if current_user.superadmin_role? || current_user.supervisor_role?|| current_user.user_role?%>
+        
         <td><%= link_to fa_icon('trash', text: "delete"), "javascript:void(0)", 'data-target': "#delete_post#{post.id}", 'data-toggle': "modal" , class: "btn btn-danger text-white" %></td>
+        
+        <% end %>
         <%# <td><%= link_to fa_icon('trash', text: "delete"), post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger text-white"  </td> %>
 
         <!-- start of delete modal -->
@@ -54,7 +67,11 @@
 
 <br>
 
-<% if user_signed_in?%>
-<%= link_to fa_icon('plus', text: "New Post"), new_post_path, class: "btn btn-primary btn-sm text-white" %>
+<% if can? :manage, User %>
+
+  <% if user_signed_in?%>
+  <%= link_to fa_icon('plus', text: "New Post"), new_post_path, class: "btn btn-primary btn-sm text-white" %>
+  <% end %>
+
 <% end %>
 
